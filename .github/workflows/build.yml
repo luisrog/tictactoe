@@ -30,9 +30,9 @@ jobs:
       - name: Docker build and push 
         run: | 
           # Run commands to build and push Docker images 
-          docker build -t tictactoe . 
+          docker build -t tic-tac-toe . 
           # Tag Docker Image
-          docker tag tictactoe ricardooshiro/tictactoe:latest
+          docker tag tic-tac-toe ricardooshiro/tictactoe:latest
           # Login to Docker Hub
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           # Push Docker Image
