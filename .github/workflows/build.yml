@@ -37,5 +37,5 @@ jobs:
           echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           # Push Docker Image
           docker push ricardooshiro/tictactoe:latest 
-          env: 
+        env: 
             DOCKER_CLI_ACI: 1
