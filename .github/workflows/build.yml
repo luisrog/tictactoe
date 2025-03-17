@@ -27,4 +27,11 @@ jobs:
       - name: Trivy File Scan
         run: trivy fs . > trivifs.txt
 
-    
+      – name: Docker build and push 
+        run: | 
+          # Run commands to build and push Docker images 
+          docker build -t tictactoe . 
+          docker tag tictactoe ricardooshiro/tictactoe:latest docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} 
+          docker push ricardooshiro/tictactoe:latest 
+          env: 
+            DOCKER_CLI_ACI: 1
