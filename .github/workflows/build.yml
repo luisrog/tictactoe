@@ -53,8 +53,18 @@ jobs:
       - name: Image scan
         run: trivy image ricardooshiro/tictactoe:latest > trivyimagedeploy.txt  
   
-      - name: Deploy to container
-        run: docker run -d --name game -p 3000:3000 ricardooshiro/tictactoe:latest
+      - name: Run Docker Container
+        run: |
+          # Verificar si el contenedor ya está en ejecución
+          if [ "$(docker ps -q -f name=game)" ]; then
+            echo "Stopping existing container..."
+            docker stop game
+            docker rm game
+          fi
+      
+          # Iniciar nuevo contenedor
+          docker run -d --name game -p 3000:3000 ricardooshiro/tictactoe:latest
+      
 
       - name: Update kubeconfig
         run: aws eks --region us-east-1 update-kubeconfig --name EKS_CLOUD
