@@ -40,5 +40,5 @@ jobs:
         env: 
             DOCKER_CLI_ACI: 1
 
-        - name: Image Scan by Trivy
-          run: trivy image ricardooshiro/tictactoe:latest > trivyimage.txt
+      - name: Image Scan by Trivy
+        run: trivy image ricardooshiro/tictactoe:latest > trivyimage.txt
